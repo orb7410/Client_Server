@@ -1,0 +1,22 @@
+# makefile
+TARGET= gservermain.out
+CC= gcc
+CFLAGS= -ansi -g -pedantic
+OBJS= gservermain.o gserver.o
+LIST_PATH=../list
+
+$(TARGET): $(OBJS) 
+	$(CC) -o $(TARGET) $(OBJS) -lm -L ../struct_library -lgends
+
+gserver.o: gserver.c gserver.h 
+	$(CC) $(CFLAGS) -I $(LIST_PATH) -c gserver.c
+
+gservermain.o: gservermain.c gserver.h
+	$(CC) $(CFLAGS) -I $(LIST_PATH) -c gservermain.c
+
+runs:
+		./$(TARGET)
+
+clean:
+	rm -f $(TARGET) $(OBJS)
+
